@@ -289,10 +289,10 @@ namespace GraficRedactor {
 	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
 		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
 		Pe->Width = this->trackBar1->Value;
-		Pen^ temporaryPen = gcnew Pen(SystemColors::Control);
-		temporaryPen->Width = 25;
+		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
 		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
 		Parametrs->DrawLine(Pe, 150, 39, 250, 39);
+
 	}
 	private: System::Void MyForm_Shown(System::Object^ sender, System::EventArgs^ e) {
 		////////////////////////////////////////////////
@@ -335,6 +335,11 @@ namespace GraficRedactor {
 				this->textBox2->Text = Convert::ToString(line.size());
 				break;
 			}
+		}
+		if (this->radioButton1->Checked) {
+			temporary_dot.x = e->X; temporary_dot.y = e->Y;
+			dot.push_back(temporary_dot);
+			Graph->FillEllipse(Pe->Brush, dot[dot.size() - 1].x, dot[dot.size() - 1].y, 7, 7);
 		}
 	}
 };
