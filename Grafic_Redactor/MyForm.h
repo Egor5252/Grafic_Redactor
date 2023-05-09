@@ -64,6 +64,9 @@ namespace GraficRedactor {
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
 	private: System::Windows::Forms::TextBox^ textBox2;
+	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
+
+
 
 
 
@@ -117,6 +120,7 @@ namespace GraficRedactor {
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
+			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
@@ -126,7 +130,7 @@ namespace GraficRedactor {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->BackColor = System::Drawing::SystemColors::ControlDark;
+			this->pictureBox1->BackColor = System::Drawing::SystemColors::Control;
 			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->pictureBox1->Location = System::Drawing::Point(3, 16);
 			this->pictureBox1->Name = L"pictureBox1";
@@ -232,6 +236,7 @@ namespace GraficRedactor {
 			this->radioButton2->TabStop = true;
 			this->radioButton2->Text = L"Прямая";
 			this->radioButton2->UseVisualStyleBackColor = true;
+			this->radioButton2->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton2_CheckedChanged);
 			// 
 			// radioButton1
 			// 
@@ -287,12 +292,21 @@ namespace GraficRedactor {
 
 #pragma endregion
 	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
-		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
 		Pe->Width = this->trackBar1->Value;
+		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
 		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
 		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
-		Parametrs->DrawLine(Pe, 150, 39, 250, 39);
-
+		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
+			15 * 2, 15 * 2);
+		if (this->radioButton1->Checked)
+		{	
+			Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
+				this->trackBar1->Value * 2, this->trackBar1->Value * 2);
+		}
+		else
+		{		
+			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
+		}
 	}
 	private: System::Void MyForm_Shown(System::Object^ sender, System::EventArgs^ e) {
 		////////////////////////////////////////////////
@@ -300,9 +314,10 @@ namespace GraficRedactor {
 		Graph = this->pictureBox1->CreateGraphics();
 		Pe = gcnew Pen (this->colorDialog1->Color, this->trackBar1->Value);
 		this->radioButton2->Checked = true;
+		//GS = Graph->Save();
 		////////////////////////////////////////////////
 		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
-		Parametrs->DrawLine(Pe, 150, 39, 250, 39);
+		Parametrs->DrawLine(gcnew Pen(Color::Red), 150, 39, 250, 39);
 		////////////////////////////////////////////////
 	}
 	private: System::Void MyForm_ResizeEnd(System::Object^ sender, System::EventArgs^ e) {
@@ -312,10 +327,20 @@ namespace GraficRedactor {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->colorDialog1->ShowDialog();
 		Pe->Color = this->colorDialog1->Color;
-		Pen^ temporaryPen = gcnew Pen(SystemColors::Control);
-		temporaryPen->Width = 25;
+
+		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
 		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
-		Parametrs->DrawLine(Pe, 150, 39, 250, 39);
+		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
+			15 * 2, 15 * 2);
+		if (this->radioButton1->Checked)
+		{
+			Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
+				this->trackBar1->Value * 2, this->trackBar1->Value * 2);
+		}
+		else
+		{
+			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
+		}
 	}
 	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		if (this->radioButton2->Checked) {
@@ -337,9 +362,28 @@ namespace GraficRedactor {
 			}
 		}
 		if (this->radioButton1->Checked) {
-			temporary_dot.x = e->X; temporary_dot.y = e->Y;
+			temporary_dot.x = e->X - this->trackBar1->Value;
+			temporary_dot.y = e->Y - this->trackBar1->Value;
 			dot.push_back(temporary_dot);
-			Graph->FillEllipse(Pe->Brush, dot[dot.size() - 1].x, dot[dot.size() - 1].y, 7, 7);
+			Graph->FillEllipse(Pe->Brush, dot[dot.size() - 1].x, dot[dot.size() - 1].y, this->trackBar1->Value*2,
+				this->trackBar1->Value*2);
+		}
+	}
+	private: System::Void radioButton2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+		Pe->Width = this->trackBar1->Value;
+		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
+		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
+		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
+		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
+			15 * 2, 15 * 2);
+		if (this->radioButton1->Checked)
+		{
+			Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
+				this->trackBar1->Value * 2, this->trackBar1->Value * 2);
+		}
+		else
+		{
+			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
 		}
 	}
 };
