@@ -64,7 +64,12 @@ namespace GraficRedactor {
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
 	private: System::Windows::Forms::TextBox^ textBox2;
-	private: System::ComponentModel::BackgroundWorker^ backgroundWorker1;
+
+	private: System::Windows::Forms::Button^ load_btn;
+	private: System::Windows::Forms::Button^ save_btn;
+	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
+	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
+
 
 
 
@@ -110,6 +115,8 @@ namespace GraficRedactor {
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
+			this->load_btn = (gcnew System::Windows::Forms::Button());
+			this->save_btn = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
@@ -120,7 +127,8 @@ namespace GraficRedactor {
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
-			this->backgroundWorker1 = (gcnew System::ComponentModel::BackgroundWorker());
+			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
@@ -141,6 +149,8 @@ namespace GraficRedactor {
 			// 
 			// groupBox1
 			// 
+			this->groupBox1->Controls->Add(this->load_btn);
+			this->groupBox1->Controls->Add(this->save_btn);
 			this->groupBox1->Controls->Add(this->button1);
 			this->groupBox1->Controls->Add(this->textBox1);
 			this->groupBox1->Controls->Add(this->trackBar1);
@@ -151,6 +161,28 @@ namespace GraficRedactor {
 			this->groupBox1->TabIndex = 1;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Параметры";
+			// 
+			// load_btn
+			// 
+			this->load_btn->Dock = System::Windows::Forms::DockStyle::Right;
+			this->load_btn->Location = System::Drawing::Point(905, 16);
+			this->load_btn->Name = L"load_btn";
+			this->load_btn->Size = System::Drawing::Size(69, 52);
+			this->load_btn->TabIndex = 6;
+			this->load_btn->Text = L"Загрузить";
+			this->load_btn->UseVisualStyleBackColor = true;
+			this->load_btn->Click += gcnew System::EventHandler(this, &MyForm::load_btn_Click);
+			// 
+			// save_btn
+			// 
+			this->save_btn->Dock = System::Windows::Forms::DockStyle::Right;
+			this->save_btn->Location = System::Drawing::Point(974, 16);
+			this->save_btn->Name = L"save_btn";
+			this->save_btn->Size = System::Drawing::Size(68, 52);
+			this->save_btn->TabIndex = 5;
+			this->save_btn->Text = L"Сохранить";
+			this->save_btn->UseVisualStyleBackColor = true;
+			this->save_btn->Click += gcnew System::EventHandler(this, &MyForm::save_btn_Click);
 			// 
 			// button1
 			// 
@@ -259,6 +291,17 @@ namespace GraficRedactor {
 			this->groupBox3->TabIndex = 3;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Поле";
+			// 
+			// saveFileDialog1
+			// 
+			this->saveFileDialog1->Filter = L"BitMap files (*.bmp)|*.bmp|JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png";
+			this->saveFileDialog1->RestoreDirectory = true;
+			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->openFileDialog1->Filter = L"BitMap files (*.bmp)|*.bmp|JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png";
+			this->openFileDialog1->RestoreDirectory = true;
 			// 
 			// MyForm
 			// 
@@ -385,6 +428,20 @@ namespace GraficRedactor {
 		{
 			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
 		}
+	}
+	private: System::Void save_btn_Click(System::Object^ sender, System::EventArgs^ e) {
+		saveFileDialog1->ShowDialog();
+		Rectangle r = pictureBox1->RectangleToScreen(pictureBox1->ClientRectangle);
+		Bitmap^ b = gcnew Bitmap(r.Width, r.Height);
+		Graphics^ g = Graphics::FromImage(b);
+		g->CopyFromScreen(r.Location, Point(0, 0), r.Size);
+		b->Save(saveFileDialog1->FileName);
+	}
+	private: System::Void load_btn_Click(System::Object^ sender, System::EventArgs^ e) {
+		openFileDialog1->ShowDialog();
+		Image^ img = Image::FromFile(openFileDialog1->FileName);
+		Graph->Clear(SystemColors::Control);
+		Graph->DrawImage(img, 0, 0);
 	}
 };
 }
