@@ -1,21 +1,6 @@
 #pragma once
 #include <vector>
-
-struct dot_struct
-{
-	int x, y;
-};
-
-struct line_struct
-{
-	int x1, y1, x2, y2;
-};
-
-bool finished = false;
-dot_struct temporary_dot;
-line_struct temporary_line;
-std::vector<dot_struct> dot;
-std::vector<line_struct> line;
+#include"Header.h"
 
 namespace GraficRedactor {
 
@@ -63,38 +48,11 @@ namespace GraficRedactor {
 	private: System::Windows::Forms::RadioButton^ radioButton2;
 	private: System::Windows::Forms::RadioButton^ radioButton1;
 	private: System::Windows::Forms::GroupBox^ groupBox3;
-	private: System::Windows::Forms::TextBox^ textBox2;
 
 	private: System::Windows::Forms::Button^ load_btn;
 	private: System::Windows::Forms::Button^ save_btn;
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog1;
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	private: System::ComponentModel::IContainer^ components;
 	protected:
@@ -121,7 +79,6 @@ namespace GraficRedactor {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
@@ -138,11 +95,11 @@ namespace GraficRedactor {
 			// 
 			// pictureBox1
 			// 
-			this->pictureBox1->BackColor = System::Drawing::SystemColors::Control;
+			this->pictureBox1->BackColor = System::Drawing::Color::White;
 			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->pictureBox1->Location = System::Drawing::Point(3, 16);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(835, 495);
+			this->pictureBox1->Size = System::Drawing::Size(943, 495);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pictureBox1_MouseDown);
@@ -165,9 +122,9 @@ namespace GraficRedactor {
 			// load_btn
 			// 
 			this->load_btn->Dock = System::Windows::Forms::DockStyle::Right;
-			this->load_btn->Location = System::Drawing::Point(905, 16);
+			this->load_btn->Location = System::Drawing::Point(946, 16);
 			this->load_btn->Name = L"load_btn";
-			this->load_btn->Size = System::Drawing::Size(69, 52);
+			this->load_btn->Size = System::Drawing::Size(48, 52);
 			this->load_btn->TabIndex = 6;
 			this->load_btn->Text = L"Загрузить";
 			this->load_btn->UseVisualStyleBackColor = true;
@@ -176,9 +133,9 @@ namespace GraficRedactor {
 			// save_btn
 			// 
 			this->save_btn->Dock = System::Windows::Forms::DockStyle::Right;
-			this->save_btn->Location = System::Drawing::Point(974, 16);
+			this->save_btn->Location = System::Drawing::Point(994, 16);
 			this->save_btn->Name = L"save_btn";
-			this->save_btn->Size = System::Drawing::Size(68, 52);
+			this->save_btn->Size = System::Drawing::Size(48, 52);
 			this->save_btn->TabIndex = 5;
 			this->save_btn->Text = L"Сохранить";
 			this->save_btn->UseVisualStyleBackColor = true;
@@ -216,25 +173,17 @@ namespace GraficRedactor {
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->textBox2);
 			this->groupBox2->Controls->Add(this->radioButton4);
 			this->groupBox2->Controls->Add(this->radioButton3);
 			this->groupBox2->Controls->Add(this->radioButton2);
 			this->groupBox2->Controls->Add(this->radioButton1);
 			this->groupBox2->Dock = System::Windows::Forms::DockStyle::Right;
-			this->groupBox2->Location = System::Drawing::Point(841, 71);
+			this->groupBox2->Location = System::Drawing::Point(949, 71);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(204, 514);
+			this->groupBox2->Size = System::Drawing::Size(96, 514);
 			this->groupBox2->TabIndex = 2;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Кисть";
-			// 
-			// textBox2
-			// 
-			this->textBox2->Location = System::Drawing::Point(22, 248);
-			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(133, 20);
-			this->textBox2->TabIndex = 4;
 			// 
 			// radioButton4
 			// 
@@ -287,7 +236,7 @@ namespace GraficRedactor {
 			this->groupBox3->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->groupBox3->Location = System::Drawing::Point(0, 71);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(841, 514);
+			this->groupBox3->Size = System::Drawing::Size(949, 514);
 			this->groupBox3->TabIndex = 3;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Поле";
@@ -313,7 +262,7 @@ namespace GraficRedactor {
 			this->Controls->Add(this->groupBox1);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
-			this->Shown += gcnew System::EventHandler(this, &MyForm::MyForm_Shown);
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResizeEnd += gcnew System::EventHandler(this, &MyForm::MyForm_ResizeEnd);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->groupBox1->ResumeLayout(false);
@@ -330,8 +279,6 @@ namespace GraficRedactor {
 		Graphics^ Parametrs;
 		Pen^ Pe;
 
-		
-		///
 
 #pragma endregion
 	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
@@ -350,18 +297,6 @@ namespace GraficRedactor {
 		{		
 			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
 		}
-	}
-	private: System::Void MyForm_Shown(System::Object^ sender, System::EventArgs^ e) {
-		////////////////////////////////////////////////
-		Parametrs = this->groupBox1->CreateGraphics();
-		Graph = this->pictureBox1->CreateGraphics();
-		Pe = gcnew Pen (this->colorDialog1->Color, this->trackBar1->Value);
-		this->radioButton2->Checked = true;
-		//GS = Graph->Save();
-		////////////////////////////////////////////////
-		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
-		Parametrs->DrawLine(gcnew Pen(Color::Red), 150, 39, 250, 39);
-		////////////////////////////////////////////////
 	}
 	private: System::Void MyForm_ResizeEnd(System::Object^ sender, System::EventArgs^ e) {
 		Graph = this->pictureBox1->CreateGraphics();
@@ -386,7 +321,8 @@ namespace GraficRedactor {
 		}
 	}
 	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		if (this->radioButton2->Checked) {
+		if (this->radioButton2->Checked)
+		{
 			switch (finished)
 			{
 			case false:
@@ -400,21 +336,30 @@ namespace GraficRedactor {
 				Graph->DrawLine(Pe, line[line.size() - 1].x1, line[line.size() - 1].y1,
 					line[line.size() - 1].x2, line[line.size() - 1].y2);
 				finished = !finished;
-				this->textBox2->Text = Convert::ToString(line.size());
 				break;
 			}
 		}
-		if (this->radioButton1->Checked) {
+
+		if (this->radioButton1->Checked)
+		{
 			temporary_dot.x = e->X - this->trackBar1->Value;
 			temporary_dot.y = e->Y - this->trackBar1->Value;
 			dot.push_back(temporary_dot);
 			Graph->FillEllipse(Pe->Brush, dot[dot.size() - 1].x, dot[dot.size() - 1].y, this->trackBar1->Value*2,
 				this->trackBar1->Value*2);
 		}
+
+		if (this->radioButton3->Checked)
+		{
+			array<PointF>^ F = gcnew array<PointF>(3);
+			F[0].X = 50; F[0].Y = 70;
+			F[1].X = 30; F[1].Y = 40;
+			F[2].X = 20; F[2].Y = 20;
+			Graph->DrawCurve(Pe, F);
+		}
 	}
 	private: System::Void radioButton2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		Pe->Width = this->trackBar1->Value;
-		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
 		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
 		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
 		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
@@ -430,18 +375,37 @@ namespace GraficRedactor {
 		}
 	}
 	private: System::Void save_btn_Click(System::Object^ sender, System::EventArgs^ e) {
-		saveFileDialog1->ShowDialog();
-		Rectangle r = pictureBox1->RectangleToScreen(pictureBox1->ClientRectangle);
-		Bitmap^ b = gcnew Bitmap(r.Width, r.Height);
-		Graphics^ g = Graphics::FromImage(b);
-		g->CopyFromScreen(r.Location, Point(0, 0), r.Size);
-		b->Save(saveFileDialog1->FileName);
+		if (saveFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)		
+		{
+			Rectangle^ r = pictureBox1->RectangleToScreen(pictureBox1->ClientRectangle);
+			Bitmap^ b = gcnew Bitmap(r->Width, r->Height);
+			Graphics^ g = Graphics::FromImage(b);
+			g->CopyFromScreen(r->Location, Point(0, 0), r->Size);
+			b->Save(saveFileDialog1->FileName);
+			b = nullptr;
+			g = nullptr;
+		}
+		
 	}
 	private: System::Void load_btn_Click(System::Object^ sender, System::EventArgs^ e) {
-		openFileDialog1->ShowDialog();
-		Image^ img = Image::FromFile(openFileDialog1->FileName);
-		Graph->Clear(SystemColors::Control);
-		Graph->DrawImage(img, 0, 0);
+		if (openFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)
+		{
+			Image^ img = Image::FromFile(openFileDialog1->FileName);
+			Graph->Clear(Color::White);
+			Graph->DrawImage(img, 0, 0);
+			img = nullptr;
+		}
+	}
+	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+		Parametrs = this->groupBox1->CreateGraphics();
+		Graph = this->pictureBox1->CreateGraphics();
+		Pe = gcnew Pen(this->colorDialog1->Color, this->trackBar1->Value);
+		this->radioButton2->Checked = true;
+		////////////////////////////////////////////////
+		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
+		Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
+			this->trackBar1->Value * 2, this->trackBar1->Value * 2);
+		////////////////////////////////////////////////
 	}
 };
 }
