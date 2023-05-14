@@ -278,6 +278,7 @@ namespace GraficRedactor {
 		Graphics^ Graph;
 		Graphics^ Parametrs;
 		Pen^ Pe;
+		array<PointF>^ F = gcnew array<PointF>(3);
 
 
 #pragma endregion
@@ -321,41 +322,58 @@ namespace GraficRedactor {
 		}
 	}
 	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
-		if (this->radioButton2->Checked)
+		if (e->Button == Windows::Forms::MouseButtons::Left)
 		{
-			switch (finished)
+			if (this->radioButton2->Checked)
 			{
-			case false:
-				temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
-				finished = !finished;
-				break;
+				switch (finished)
+				{
+				case false:
+					temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
+					finished = !finished;
+					break;
 
-			case true:
-				temporary_line.x2 = e->X; temporary_line.y2 = e->Y;
-				line.push_back(temporary_line);
-				Graph->DrawLine(Pe, line[line.size() - 1].x1, line[line.size() - 1].y1,
-					line[line.size() - 1].x2, line[line.size() - 1].y2);
-				finished = !finished;
-				break;
+				case true:
+					temporary_line.x2 = e->X; temporary_line.y2 = e->Y;
+					line.push_back(temporary_line);
+					Graph->DrawLine(Pe, line[line.size() - 1].x1, line[line.size() - 1].y1,
+						line[line.size() - 1].x2, line[line.size() - 1].y2);
+					finished = !finished;
+					break;
+				}
 			}
-		}
 
-		if (this->radioButton1->Checked)
-		{
-			temporary_dot.x = e->X - this->trackBar1->Value;
-			temporary_dot.y = e->Y - this->trackBar1->Value;
-			dot.push_back(temporary_dot);
-			Graph->FillEllipse(Pe->Brush, dot[dot.size() - 1].x, dot[dot.size() - 1].y, this->trackBar1->Value*2,
-				this->trackBar1->Value*2);
-		}
+			if (this->radioButton1->Checked)
+			{
+				temporary_dot.x = e->X - this->trackBar1->Value;
+				temporary_dot.y = e->Y - this->trackBar1->Value;
+				dot.push_back(temporary_dot);
+				Graph->FillEllipse(Pe->Brush, dot[dot.size() - 1].x, dot[dot.size() - 1].y, this->trackBar1->Value * 2,
+					this->trackBar1->Value * 2);
+			}
 
-		if (this->radioButton3->Checked)
-		{
-			array<PointF>^ F = gcnew array<PointF>(3);
-			F[0].X = 50; F[0].Y = 70;
-			F[1].X = 30; F[1].Y = 40;
-			F[2].X = 20; F[2].Y = 20;
-			Graph->DrawCurve(Pe, F);
+			if (this->radioButton3->Checked)
+			{
+				if (finished_dyga == 0)
+				{
+					F[finished_dyga].X = e->X;
+					F[finished_dyga].Y = e->Y;
+					finished_dyga++;
+				}
+				else if (finished_dyga == 1)
+				{
+					F[finished_dyga].X = e->X;
+					F[finished_dyga].Y = e->Y;
+					finished_dyga++;
+				}
+				else if (finished_dyga == 2)
+				{
+					F[finished_dyga].X = e->X;
+					F[finished_dyga].Y = e->Y;
+					finished_dyga = 0;
+					Graph->DrawCurve(Pe, F);
+				}
+			}
 		}
 	}
 	private: System::Void radioButton2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
