@@ -79,6 +79,9 @@ namespace GraficRedactor {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
+			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+			this->ÎËÌËˇToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->‰Û„‡ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->colorDialog1 = (gcnew System::Windows::Forms::ColorDialog());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->load_btn = (gcnew System::Windows::Forms::Button());
@@ -95,15 +98,12 @@ namespace GraficRedactor {
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-			this->contextMenuStrip1 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
-			this->ÎËÌËˇToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->‰Û„‡ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->contextMenuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
-			this->contextMenuStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -117,6 +117,29 @@ namespace GraficRedactor {
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pictureBox1_MouseDown);
+			// 
+			// contextMenuStrip1
+			// 
+			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+				this->ÎËÌËˇToolStripMenuItem,
+					this->‰Û„‡ToolStripMenuItem
+			});
+			this->contextMenuStrip1->Name = L"contextMenuStrip1";
+			this->contextMenuStrip1->ShowImageMargin = false;
+			this->contextMenuStrip1->Size = System::Drawing::Size(85, 48);
+			this->contextMenuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &MyForm::contextMenuStrip1_ItemClicked);
+			// 
+			// ÎËÌËˇToolStripMenuItem
+			// 
+			this->ÎËÌËˇToolStripMenuItem->Name = L"ÎËÌËˇToolStripMenuItem";
+			this->ÎËÌËˇToolStripMenuItem->Size = System::Drawing::Size(84, 22);
+			this->ÎËÌËˇToolStripMenuItem->Text = L"ÀËÌËˇ";
+			// 
+			// ‰Û„‡ToolStripMenuItem
+			// 
+			this->‰Û„‡ToolStripMenuItem->Name = L"‰Û„‡ToolStripMenuItem";
+			this->‰Û„‡ToolStripMenuItem->Size = System::Drawing::Size(84, 22);
+			this->‰Û„‡ToolStripMenuItem->Text = L"ƒÛ„‡";
 			// 
 			// groupBox1
 			// 
@@ -278,28 +301,6 @@ namespace GraficRedactor {
 			this->openFileDialog1->Filter = L"BitMap files (*.bmp)|*.bmp|JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png";
 			this->openFileDialog1->RestoreDirectory = true;
 			// 
-			// contextMenuStrip1
-			// 
-			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
-				this->ÎËÌËˇToolStripMenuItem,
-					this->‰Û„‡ToolStripMenuItem
-			});
-			this->contextMenuStrip1->Name = L"contextMenuStrip1";
-			this->contextMenuStrip1->Size = System::Drawing::Size(181, 70);
-			this->contextMenuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &MyForm::contextMenuStrip1_ItemClicked);
-			// 
-			// ÎËÌËˇToolStripMenuItem
-			// 
-			this->ÎËÌËˇToolStripMenuItem->Name = L"ÎËÌËˇToolStripMenuItem";
-			this->ÎËÌËˇToolStripMenuItem->Size = System::Drawing::Size(109, 22);
-			this->ÎËÌËˇToolStripMenuItem->Text = L"ÀËÌËˇ";
-			// 
-			// ‰Û„‡ToolStripMenuItem
-			// 
-			this->‰Û„‡ToolStripMenuItem->Name = L"‰Û„‡ToolStripMenuItem";
-			this->‰Û„‡ToolStripMenuItem->Size = System::Drawing::Size(109, 22);
-			this->‰Û„‡ToolStripMenuItem->Text = L"ƒÛ„‡";
-			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -313,13 +314,13 @@ namespace GraficRedactor {
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->ResizeEnd += gcnew System::EventHandler(this, &MyForm::MyForm_ResizeEnd);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->contextMenuStrip1->ResumeLayout(false);
 			this->groupBox1->ResumeLayout(false);
 			this->groupBox1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
 			this->groupBox3->ResumeLayout(false);
-			this->contextMenuStrip1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -334,7 +335,7 @@ namespace GraficRedactor {
 	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
 		Pe->Width = this->trackBar1->Value;
 		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
-		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
+		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 40);
 		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
 		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
 			15 * 2, 15 * 2);
@@ -378,6 +379,8 @@ namespace GraficRedactor {
 				switch (finished)
 				{
 				case false:
+					Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+					Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Dash;
 					temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
 					finished = !finished;
 					break;
