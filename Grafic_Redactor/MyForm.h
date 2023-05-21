@@ -424,13 +424,59 @@ namespace GraficRedactor {
 				}
 			}
 
-			/*if (this->radioButton4->Checked)
+			if (this->radioButton4->Checked)
 			{
-				if (finished == false)
+				if (!line_or_duga)
 				{
-
+					if (!start)
+					{
+						temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
+						start = !start;
+					}
+					else if (start)
+					{
+						Graph->DrawLine(Pe, temporary_line.x1, temporary_line.y1, e->X, e->Y);
+						temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
+						F[0].X = e->X; F[0].Y = e->Y; finished_dyga1 = 1;
+					}
 				}
-			}*/
+				else if (line_or_duga)
+				{
+					if (!start)
+					{
+						if (finished_dyga1 == 0)
+						{
+							F[finished_dyga1].X = e->X;
+							F[finished_dyga1].Y = e->Y;
+							finished_dyga1++;
+						}
+						else if (finished_dyga1 == 1)
+						{
+							F[finished_dyga1].X = e->X;
+							F[finished_dyga1].Y = e->Y;
+							finished_dyga1 = 0;
+							start = !start;
+						}
+					}
+					else if (start)
+					{
+						if (finished_dyga1 == 0)
+						{
+							F[2].X = e->X; F[2].Y = e->Y;
+							Graph->DrawCurve(Pe, F);
+							F[0] = F[2];
+							finished_dyga1++;
+							temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
+						}
+						else if (finished_dyga1 == 1)
+						{
+							F[1].X = e->X;
+							F[1].Y = e->Y;
+							finished_dyga1 = 0;
+						}
+					}
+				}
+			}
 		}
 	}
 	private: System::Void radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -489,14 +535,14 @@ namespace GraficRedactor {
 
 		if (e->ClickedItem == this->contextMenuStrip1->Items->Find("ëèíèÿToolStripMenuItem", false)[0])
 		{
-			finished = false;
+			line_or_duga = false;
 		}
 		else
 		{
-			finished = true;
+			line_or_duga = true;
 		}
 
-		richTextBox1->Text = finished.ToString();
+		richTextBox1->Text = line_or_duga.ToString();
 	}
 };
 }

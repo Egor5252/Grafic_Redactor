@@ -12,7 +12,10 @@ struct line_struct
 };
 
 bool finished = false;
+bool line_or_duga = false;
+bool start = false;
 unsigned char finished_dyga = 0;
+unsigned char finished_dyga1 = 0;
 dot_struct temporary_dot;
 line_struct temporary_line;
 std::vector<dot_struct> dot;
