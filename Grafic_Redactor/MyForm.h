@@ -58,8 +58,28 @@ namespace GraficRedactor {
 
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
-	private: System::Windows::Forms::ToolStripMenuItem^ ëèíèÿToolStripMenuItem;
+
 	private: System::Windows::Forms::ToolStripMenuItem^ äóãàToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñïëîøíàÿToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ïóíêòèðíàÿToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ øòðèõïóíêòèðíàÿToolStripMenuItem;
+	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip2;
+	private: System::Windows::Forms::ToolStripMenuItem^ ëèíèÿToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàñþäàToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàToolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ îáû÷íàÿToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ îáû÷íàÿToolStripMenuItem1;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàToolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2;
+	private: System::Windows::Forms::ToolStripMenuItem^ îáû÷íàÿToolStripMenuItem2;
+
+
+
+
+
+
 
 	private: System::ComponentModel::IContainer^ components;
 	protected:
@@ -98,12 +118,26 @@ namespace GraficRedactor {
 			this->groupBox3 = (gcnew System::Windows::Forms::GroupBox());
 			this->saveFileDialog1 = (gcnew System::Windows::Forms::SaveFileDialog());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
+			this->ñïëîøíàÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->îáû÷íàÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ïóíêòèðíàÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->îáû÷íàÿToolStripMenuItem1 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->øòðèõïóíêòèðíàÿToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->îáû÷íàÿToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->contextMenuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
 			this->groupBox2->SuspendLayout();
 			this->groupBox3->SuspendLayout();
+			this->contextMenuStrip2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// pictureBox1
@@ -127,19 +161,20 @@ namespace GraficRedactor {
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
 			this->contextMenuStrip1->ShowImageMargin = false;
 			this->contextMenuStrip1->Size = System::Drawing::Size(85, 48);
-			this->contextMenuStrip1->ItemClicked += gcnew System::Windows::Forms::ToolStripItemClickedEventHandler(this, &MyForm::contextMenuStrip1_ItemClicked);
 			// 
 			// ëèíèÿToolStripMenuItem
 			// 
 			this->ëèíèÿToolStripMenuItem->Name = L"ëèíèÿToolStripMenuItem";
 			this->ëèíèÿToolStripMenuItem->Size = System::Drawing::Size(84, 22);
 			this->ëèíèÿToolStripMenuItem->Text = L"Ëèíèÿ";
+			this->ëèíèÿToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ëèíèÿToolStripMenuItem_Click);
 			// 
 			// äóãàToolStripMenuItem
 			// 
 			this->äóãàToolStripMenuItem->Name = L"äóãàToolStripMenuItem";
 			this->äóãàToolStripMenuItem->Size = System::Drawing::Size(84, 22);
 			this->äóãàToolStripMenuItem->Text = L"Äóãà";
+			this->äóãàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::äóãàToolStripMenuItem_Click);
 			// 
 			// groupBox1
 			// 
@@ -258,7 +293,7 @@ namespace GraficRedactor {
 			// radioButton2
 			// 
 			this->radioButton2->AutoSize = true;
-			this->radioButton2->Location = System::Drawing::Point(6, 19);
+			this->radioButton2->Location = System::Drawing::Point(6, 42);
 			this->radioButton2->Name = L"radioButton2";
 			this->radioButton2->Size = System::Drawing::Size(65, 17);
 			this->radioButton2->TabIndex = 1;
@@ -270,7 +305,7 @@ namespace GraficRedactor {
 			// radioButton1
 			// 
 			this->radioButton1->AutoSize = true;
-			this->radioButton1->Location = System::Drawing::Point(6, 42);
+			this->radioButton1->Location = System::Drawing::Point(6, 19);
 			this->radioButton1->Name = L"radioButton1";
 			this->radioButton1->Size = System::Drawing::Size(55, 17);
 			this->radioButton1->TabIndex = 0;
@@ -301,6 +336,109 @@ namespace GraficRedactor {
 			this->openFileDialog1->Filter = L"BitMap files (*.bmp)|*.bmp|JPEG files (*.jpg)|*.jpg|PNG files (*.png)|*.png";
 			this->openFileDialog1->RestoreDirectory = true;
 			// 
+			// ñïëîøíàÿToolStripMenuItem
+			// 
+			this->ñïëîøíàÿToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->ñòðåëî÷êàÒóäàToolStripMenuItem,
+					this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem, this->îáû÷íàÿToolStripMenuItem
+			});
+			this->ñïëîøíàÿToolStripMenuItem->Name = L"ñïëîøíàÿToolStripMenuItem";
+			this->ñïëîøíàÿToolStripMenuItem->Size = System::Drawing::Size(149, 22);
+			this->ñïëîøíàÿToolStripMenuItem->Text = L"Ñïëîøíàÿ";
+			// 
+			// ñòðåëî÷êàÒóäàToolStripMenuItem
+			// 
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem->Name = L"ñòðåëî÷êàÒóäàToolStripMenuItem";
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem->Size = System::Drawing::Size(192, 22);
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem->Text = L"Ñòðåëî÷êà òóäà";
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñòðåëî÷êàÒóäàToolStripMenuItem_Click);
+			// 
+			// ñòðåëî÷êàÒóäàñþäàToolStripMenuItem
+			// 
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem->Name = L"ñòðåëî÷êàÒóäàñþäàToolStripMenuItem";
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem->Size = System::Drawing::Size(192, 22);
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem->Text = L"Ñòðåëî÷êà òóäà-ñþäà";
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ñòðåëî÷êàÒóäàñþäàToolStripMenuItem_Click);
+			// 
+			// îáû÷íàÿToolStripMenuItem
+			// 
+			this->îáû÷íàÿToolStripMenuItem->Name = L"îáû÷íàÿToolStripMenuItem";
+			this->îáû÷íàÿToolStripMenuItem->Size = System::Drawing::Size(192, 22);
+			this->îáû÷íàÿToolStripMenuItem->Text = L"Îáû÷íàÿ";
+			this->îáû÷íàÿToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::îáû÷íàÿToolStripMenuItem_Click);
+			// 
+			// ïóíêòèðíàÿToolStripMenuItem
+			// 
+			this->ïóíêòèðíàÿToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->ñòðåëî÷êàÒóäàToolStripMenuItem1,
+					this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1, this->îáû÷íàÿToolStripMenuItem1
+			});
+			this->ïóíêòèðíàÿToolStripMenuItem->Name = L"ïóíêòèðíàÿToolStripMenuItem";
+			this->ïóíêòèðíàÿToolStripMenuItem->Size = System::Drawing::Size(149, 22);
+			this->ïóíêòèðíàÿToolStripMenuItem->Text = L"Ïóíêòèðíàÿ";
+			// 
+			// ñòðåëî÷êàÒóäàToolStripMenuItem1
+			// 
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem1->Name = L"ñòðåëî÷êàÒóäàToolStripMenuItem1";
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem1->Size = System::Drawing::Size(192, 22);
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem1->Text = L"Ñòðåëî÷êà òóäà";
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::ñòðåëî÷êàÒóäàToolStripMenuItem1_Click);
+			// 
+			// ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1
+			// 
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1->Name = L"ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1";
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1->Size = System::Drawing::Size(192, 22);
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1->Text = L"Ñòðåëî÷êà òóäà-ñþäà";
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1_Click);
+			// 
+			// îáû÷íàÿToolStripMenuItem1
+			// 
+			this->îáû÷íàÿToolStripMenuItem1->Name = L"îáû÷íàÿToolStripMenuItem1";
+			this->îáû÷íàÿToolStripMenuItem1->Size = System::Drawing::Size(192, 22);
+			this->îáû÷íàÿToolStripMenuItem1->Text = L"Îáû÷íàÿ";
+			this->îáû÷íàÿToolStripMenuItem1->Click += gcnew System::EventHandler(this, &MyForm::îáû÷íàÿToolStripMenuItem1_Click);
+			// 
+			// øòðèõïóíêòèðíàÿToolStripMenuItem
+			// 
+			this->øòðèõïóíêòèðíàÿToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->ñòðåëî÷êàÒóäàToolStripMenuItem2,
+					this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2, this->îáû÷íàÿToolStripMenuItem2
+			});
+			this->øòðèõïóíêòèðíàÿToolStripMenuItem->Name = L"øòðèõïóíêòèðíàÿToolStripMenuItem";
+			this->øòðèõïóíêòèðíàÿToolStripMenuItem->Size = System::Drawing::Size(149, 22);
+			this->øòðèõïóíêòèðíàÿToolStripMenuItem->Text = L"Øòðèõïóíêòèðíàÿ";
+			// 
+			// ñòðåëî÷êàÒóäàToolStripMenuItem2
+			// 
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem2->Name = L"ñòðåëî÷êàÒóäàToolStripMenuItem2";
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem2->Size = System::Drawing::Size(192, 22);
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem2->Text = L"Ñòðåëî÷êà òóäà";
+			this->ñòðåëî÷êàÒóäàToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::ñòðåëî÷êàÒóäàToolStripMenuItem2_Click);
+			// 
+			// ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2
+			// 
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2->Name = L"ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2";
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2->Size = System::Drawing::Size(192, 22);
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2->Text = L"Ñòðåëî÷êà òóäà-ñþäà";
+			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2_Click);
+			// 
+			// îáû÷íàÿToolStripMenuItem2
+			// 
+			this->îáû÷íàÿToolStripMenuItem2->Name = L"îáû÷íàÿToolStripMenuItem2";
+			this->îáû÷íàÿToolStripMenuItem2->Size = System::Drawing::Size(192, 22);
+			this->îáû÷íàÿToolStripMenuItem2->Text = L"Îáû÷íàÿ";
+			this->îáû÷íàÿToolStripMenuItem2->Click += gcnew System::EventHandler(this, &MyForm::îáû÷íàÿToolStripMenuItem2_Click);
+			// 
+			// contextMenuStrip2
+			// 
+			this->contextMenuStrip2->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+				this->ñïëîøíàÿToolStripMenuItem,
+					this->ïóíêòèðíàÿToolStripMenuItem, this->øòðèõïóíêòèðíàÿToolStripMenuItem
+			});
+			this->contextMenuStrip2->Name = L"contextMenuStrip2";
+			this->contextMenuStrip2->ShowImageMargin = false;
+			this->contextMenuStrip2->Size = System::Drawing::Size(150, 70);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -321,6 +459,7 @@ namespace GraficRedactor {
 			this->groupBox2->ResumeLayout(false);
 			this->groupBox2->PerformLayout();
 			this->groupBox3->ResumeLayout(false);
+			this->contextMenuStrip2->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -332,22 +471,27 @@ namespace GraficRedactor {
 
 
 #pragma endregion
-	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
+
+	Void Lalala()
+	{
 		Pe->Width = this->trackBar1->Value;
-		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
 		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 40);
-		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
+		Parametrs->DrawLine(temporaryPen, 140, 39, 260, 39);
 		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
 			15 * 2, 15 * 2);
 		if (this->radioButton1->Checked)
-		{	
+		{
 			Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
 				this->trackBar1->Value * 2, this->trackBar1->Value * 2);
 		}
 		else
-		{		
+		{
 			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
 		}
+	}
+	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
+		Lalala();
+		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
 	}
 	private: System::Void MyForm_ResizeEnd(System::Object^ sender, System::EventArgs^ e) {
 		Graph = this->pictureBox1->CreateGraphics();
@@ -357,19 +501,7 @@ namespace GraficRedactor {
 		this->colorDialog1->ShowDialog();
 		Pe->Color = this->colorDialog1->Color;
 
-		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
-		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
-		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
-			15 * 2, 15 * 2);
-		if (this->radioButton1->Checked)
-		{
-			Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
-				this->trackBar1->Value * 2, this->trackBar1->Value * 2);
-		}
-		else
-		{
-			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
-		}
+		Lalala();
 	}
 	private: System::Void pictureBox1_MouseDown(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
 		if (e->Button == Windows::Forms::MouseButtons::Left)
@@ -379,8 +511,6 @@ namespace GraficRedactor {
 				switch (finished)
 				{
 				case false:
-					Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
-					Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Dash;
 					temporary_line.x1 = e->X; temporary_line.y1 = e->Y;
 					finished = !finished;
 					break;
@@ -483,22 +613,12 @@ namespace GraficRedactor {
 		}
 	}
 	private: System::Void radioButton_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-		Pe->Width = this->trackBar1->Value;
-		Pen^ temporaryPen = gcnew Pen(SystemColors::Control, 25);
-		Parametrs->DrawLine(temporaryPen, 150, 39, 251, 39);
-		Parametrs->FillEllipse(temporaryPen->Brush, 195 - 15, 39 - 15,
-			15 * 2, 15 * 2);
-		if (this->radioButton1->Checked)
-		{
-			Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
-				this->trackBar1->Value * 2, this->trackBar1->Value * 2);
-		}
-		else
-		{
-			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
-		}
+		Lalala();
 
-		
+		if (this->radioButton1->Checked) this->pictureBox1->ContextMenuStrip = nullptr;
+		if (this->radioButton2->Checked) this->pictureBox1->ContextMenuStrip = this->contextMenuStrip2;
+		if (this->radioButton3->Checked) this->pictureBox1->ContextMenuStrip = this->contextMenuStrip2;
+		if (this->radioButton4->Checked) this->pictureBox1->ContextMenuStrip = this->contextMenuStrip1;
 	}
 	private: System::Void save_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (saveFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)		
@@ -533,19 +653,66 @@ namespace GraficRedactor {
 			this->trackBar1->Value * 2, this->trackBar1->Value * 2);
 		////////////////////////////////////////////////
 	}
-	private: System::Void contextMenuStrip1_ItemClicked(System::Object^ sender, System::Windows::Forms::ToolStripItemClickedEventArgs^ e) {
-		this->richTextBox1->Text = e->ClickedItem->ToString();
 
-		if (e->ClickedItem == this->contextMenuStrip1->Items->Find("ëèíèÿToolStripMenuItem", false)[0])
-		{
-			line_or_duga = false;
-		}
-		else
-		{
-			line_or_duga = true;
-		}
-
-		richTextBox1->Text = line_or_duga.ToString();
+	private: System::Void ëèíèÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		line_or_duga = false;
+	}
+	private: System::Void äóãàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		line_or_duga = true;
+	}
+	private: System::Void îáû÷íàÿToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Solid;
+		Lalala();
+	}
+	private: System::Void ñòðåëî÷êàÒóäàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Solid;
+		Lalala();
+	}
+	private: System::Void ñòðåëî÷êàÒóäàñþäàToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Solid;
+		Lalala();
+	}
+	private: System::Void îáû÷íàÿToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Dash;
+		Lalala();
+	}
+	private: System::Void ñòðåëî÷êàÒóäàToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Dash;
+		Lalala();
+	}
+	private: System::Void ñòðåëî÷êàÒóäàñþäàToolStripMenuItem1_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::Dash;
+		Lalala();
+	}
+	private: System::Void ñòðåëî÷êàÒóäàToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::DashDot;
+		Lalala();
+	}
+	private: System::Void ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::ArrowAnchor;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::DashDot;
+		Lalala();
+	}
+	private: System::Void îáû÷íàÿToolStripMenuItem2_Click(System::Object^ sender, System::EventArgs^ e) {
+		Pe->StartCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->EndCap = System::Drawing::Drawing2D::LineCap::Square;
+		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::DashDot;
+		Lalala();
 	}
 };
 }
