@@ -133,8 +133,6 @@ namespace GraficRedactor {
 			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îáû÷íàÿToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
-			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
-			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->contextMenuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
@@ -447,16 +445,6 @@ namespace GraficRedactor {
 			this->contextMenuStrip2->Name = L"contextMenuStrip2";
 			this->contextMenuStrip2->ShowImageMargin = false;
 			this->contextMenuStrip2->Size = System::Drawing::Size(150, 70);
-			// 
-			// timer1
-			// 
-			this->timer1->Interval = 300;
-			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
-			// 
-			// timer2
-			// 
-			this->timer2->Enabled = true;
-			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
 			// 
 			// MyForm
 			// 
