@@ -21,8 +21,6 @@ namespace GraficRedactor {
 		{
 			InitializeComponent();
 			//
-			
-			//
 		}
 
 	protected:
@@ -56,7 +54,7 @@ namespace GraficRedactor {
 
 
 
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+
 	private: System::Windows::Forms::ContextMenuStrip^ contextMenuStrip1;
 
 	private: System::Windows::Forms::ToolStripMenuItem^ äóãàToolStripMenuItem;
@@ -74,6 +72,8 @@ namespace GraficRedactor {
 	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ îáû÷íàÿToolStripMenuItem2;
+	private: System::Windows::Forms::RadioButton^ radioButton5;
+
 
 
 
@@ -110,7 +110,7 @@ namespace GraficRedactor {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->radioButton5 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton4 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton3 = (gcnew System::Windows::Forms::RadioButton());
 			this->radioButton2 = (gcnew System::Windows::Forms::RadioButton());
@@ -147,10 +147,11 @@ namespace GraficRedactor {
 			this->pictureBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->pictureBox1->Location = System::Drawing::Point(3, 16);
 			this->pictureBox1->Name = L"pictureBox1";
-			this->pictureBox1->Size = System::Drawing::Size(943, 495);
+			this->pictureBox1->Size = System::Drawing::Size(1038, 479);
 			this->pictureBox1->TabIndex = 0;
 			this->pictureBox1->TabStop = false;
 			this->pictureBox1->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pictureBox1_MouseDown);
+			this->pictureBox1->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::pictureBox1_MouseMove);
 			// 
 			// contextMenuStrip1
 			// 
@@ -186,7 +187,7 @@ namespace GraficRedactor {
 			this->groupBox1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->groupBox1->Location = System::Drawing::Point(0, 0);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Size = System::Drawing::Size(1045, 71);
+			this->groupBox1->Size = System::Drawing::Size(1140, 71);
 			this->groupBox1->TabIndex = 1;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Ïàðàìåòðû";
@@ -194,7 +195,7 @@ namespace GraficRedactor {
 			// load_btn
 			// 
 			this->load_btn->Dock = System::Windows::Forms::DockStyle::Right;
-			this->load_btn->Location = System::Drawing::Point(946, 16);
+			this->load_btn->Location = System::Drawing::Point(1041, 16);
 			this->load_btn->Name = L"load_btn";
 			this->load_btn->Size = System::Drawing::Size(48, 52);
 			this->load_btn->TabIndex = 6;
@@ -205,7 +206,7 @@ namespace GraficRedactor {
 			// save_btn
 			// 
 			this->save_btn->Dock = System::Windows::Forms::DockStyle::Right;
-			this->save_btn->Location = System::Drawing::Point(994, 16);
+			this->save_btn->Location = System::Drawing::Point(1089, 16);
 			this->save_btn->Name = L"save_btn";
 			this->save_btn->Size = System::Drawing::Size(48, 52);
 			this->save_btn->TabIndex = 5;
@@ -245,26 +246,30 @@ namespace GraficRedactor {
 			// 
 			// groupBox2
 			// 
-			this->groupBox2->Controls->Add(this->richTextBox1);
+			this->groupBox2->Controls->Add(this->radioButton5);
 			this->groupBox2->Controls->Add(this->radioButton4);
 			this->groupBox2->Controls->Add(this->radioButton3);
 			this->groupBox2->Controls->Add(this->radioButton2);
 			this->groupBox2->Controls->Add(this->radioButton1);
 			this->groupBox2->Dock = System::Windows::Forms::DockStyle::Right;
-			this->groupBox2->Location = System::Drawing::Point(949, 71);
+			this->groupBox2->Location = System::Drawing::Point(1044, 71);
 			this->groupBox2->Name = L"groupBox2";
-			this->groupBox2->Size = System::Drawing::Size(96, 514);
+			this->groupBox2->Size = System::Drawing::Size(96, 498);
 			this->groupBox2->TabIndex = 2;
 			this->groupBox2->TabStop = false;
 			this->groupBox2->Text = L"Êèñòü";
 			// 
-			// richTextBox1
+			// radioButton5
 			// 
-			this->richTextBox1->Location = System::Drawing::Point(0, 222);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(100, 96);
-			this->richTextBox1->TabIndex = 4;
-			this->richTextBox1->Text = L"";
+			this->radioButton5->AutoSize = true;
+			this->radioButton5->Location = System::Drawing::Point(6, 111);
+			this->radioButton5->Name = L"radioButton5";
+			this->radioButton5->Size = System::Drawing::Size(62, 17);
+			this->radioButton5->TabIndex = 4;
+			this->radioButton5->TabStop = true;
+			this->radioButton5->Text = L"Ëàñòèê";
+			this->radioButton5->UseVisualStyleBackColor = true;
+			this->radioButton5->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton_CheckedChanged);
 			// 
 			// radioButton4
 			// 
@@ -320,7 +325,7 @@ namespace GraficRedactor {
 			this->groupBox3->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->groupBox3->Location = System::Drawing::Point(0, 71);
 			this->groupBox3->Name = L"groupBox3";
-			this->groupBox3->Size = System::Drawing::Size(949, 514);
+			this->groupBox3->Size = System::Drawing::Size(1044, 498);
 			this->groupBox3->TabIndex = 3;
 			this->groupBox3->TabStop = false;
 			this->groupBox3->Text = L"Ïîëå";
@@ -443,7 +448,7 @@ namespace GraficRedactor {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1045, 585);
+			this->ClientSize = System::Drawing::Size(1140, 569);
 			this->Controls->Add(this->groupBox3);
 			this->Controls->Add(this->groupBox2);
 			this->Controls->Add(this->groupBox1);
@@ -619,6 +624,7 @@ namespace GraficRedactor {
 		if (this->radioButton2->Checked) this->pictureBox1->ContextMenuStrip = this->contextMenuStrip2;
 		if (this->radioButton3->Checked) this->pictureBox1->ContextMenuStrip = this->contextMenuStrip2;
 		if (this->radioButton4->Checked) this->pictureBox1->ContextMenuStrip = this->contextMenuStrip1;
+		if (this->radioButton5->Checked) this->pictureBox1->ContextMenuStrip = nullptr;
 	}
 	private: System::Void save_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (saveFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)		
@@ -713,6 +719,17 @@ namespace GraficRedactor {
 		Pe->EndCap = System::Drawing::Drawing2D::LineCap::Square;
 		Pe->DashStyle = System::Drawing::Drawing2D::DashStyle::DashDot;
 		Lalala();
+	}
+	private: System::Void pictureBox2_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		Lalala();
+	}
+	private: System::Void pictureBox1_MouseMove(System::Object^ sender, System::Windows::Forms::MouseEventArgs^ e) {
+		if (this->radioButton5->Checked && e->Button == Windows::Forms::MouseButtons::Left)
+		{
+			Pen^ temp_pen = gcnew Pen(Color::White, this->trackBar1->Value);
+			Graph->FillEllipse(temp_pen->Brush, e->X - this->trackBar1->Value, e->Y - this->trackBar1->Value, this->trackBar1->Value * 2,
+				this->trackBar1->Value * 2);
+		}
 	}
 };
 }
