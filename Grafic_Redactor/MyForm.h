@@ -73,6 +73,8 @@ namespace GraficRedactor {
 	private: System::Windows::Forms::ToolStripMenuItem^ ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2;
 	private: System::Windows::Forms::ToolStripMenuItem^ îáû÷íàÿToolStripMenuItem2;
 	private: System::Windows::Forms::RadioButton^ radioButton5;
+	private: System::Windows::Forms::Timer^ timer1;
+	private: System::Windows::Forms::Timer^ timer2;
 
 
 
@@ -131,6 +133,8 @@ namespace GraficRedactor {
 			this->ñòðåëî÷êàÒóäàñþäàToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->îáû÷íàÿToolStripMenuItem2 = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->contextMenuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
@@ -444,6 +448,16 @@ namespace GraficRedactor {
 			this->contextMenuStrip2->ShowImageMargin = false;
 			this->contextMenuStrip2->Size = System::Drawing::Size(150, 70);
 			// 
+			// timer1
+			// 
+			this->timer1->Interval = 300;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick);
+			// 
+			// timer2
+			// 
+			this->timer2->Enabled = true;
+			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -494,6 +508,10 @@ namespace GraficRedactor {
 			Parametrs->DrawLine(Pe, 150, 39, 250, 39);
 		}
 	}
+		private: System::Void timer2_Tick(System::Object^ sender, System::EventArgs^ e) {
+			Lalala();
+			this->timer2->Stop();
+		}
 	private: System::Void trackBar1_Scroll(System::Object^ sender, System::EventArgs^ e) {
 		Lalala();
 		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
@@ -629,15 +647,19 @@ namespace GraficRedactor {
 	private: System::Void save_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (saveFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)		
 		{
-			Rectangle^ r = pictureBox1->RectangleToScreen(pictureBox1->ClientRectangle);
-			Bitmap^ b = gcnew Bitmap(r->Width, r->Height);
-			Graphics^ g = Graphics::FromImage(b);
-			g->CopyFromScreen(r->Location, Point(0, 0), r->Size);
-			b->Save(saveFileDialog1->FileName);
-			b = nullptr;
-			g = nullptr;
+			this->timer1->Start();
 		}
 		
+	}
+	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+		Rectangle^ r = pictureBox1->RectangleToScreen(pictureBox1->ClientRectangle);
+		Bitmap^ b = gcnew Bitmap(r->Width, r->Height);
+		Graphics^ g = Graphics::FromImage(b);
+		g->CopyFromScreen(r->Location, Point(0, 0), r->Size);
+		b->Save(saveFileDialog1->FileName);
+		b = nullptr;
+		g = nullptr;
+		this->timer1->Stop();
 	}
 	private: System::Void load_btn_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (openFileDialog1->ShowDialog() == Windows::Forms::DialogResult::OK)
