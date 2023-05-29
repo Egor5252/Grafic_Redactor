@@ -75,6 +75,7 @@ namespace GraficRedactor {
 	private: System::Windows::Forms::RadioButton^ radioButton5;
 	private: System::Windows::Forms::Timer^ timer1;
 	private: System::Windows::Forms::Timer^ timer2;
+	private: System::Windows::Forms::ToolStripMenuItem^ êîíåöToolStripMenuItem;
 
 
 
@@ -135,6 +136,7 @@ namespace GraficRedactor {
 			this->contextMenuStrip2 = (gcnew System::Windows::Forms::ContextMenuStrip(this->components));
 			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->timer2 = (gcnew System::Windows::Forms::Timer(this->components));
+			this->êîíåöToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->contextMenuStrip1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
@@ -159,25 +161,25 @@ namespace GraficRedactor {
 			// 
 			// contextMenuStrip1
 			// 
-			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(2) {
+			this->contextMenuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
 				this->ëèíèÿToolStripMenuItem,
-					this->äóãàToolStripMenuItem
+					this->äóãàToolStripMenuItem, this->êîíåöToolStripMenuItem
 			});
 			this->contextMenuStrip1->Name = L"contextMenuStrip1";
 			this->contextMenuStrip1->ShowImageMargin = false;
-			this->contextMenuStrip1->Size = System::Drawing::Size(85, 48);
+			this->contextMenuStrip1->Size = System::Drawing::Size(156, 92);
 			// 
 			// ëèíèÿToolStripMenuItem
 			// 
 			this->ëèíèÿToolStripMenuItem->Name = L"ëèíèÿToolStripMenuItem";
-			this->ëèíèÿToolStripMenuItem->Size = System::Drawing::Size(84, 22);
+			this->ëèíèÿToolStripMenuItem->Size = System::Drawing::Size(155, 22);
 			this->ëèíèÿToolStripMenuItem->Text = L"Ëèíèÿ";
 			this->ëèíèÿToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::ëèíèÿToolStripMenuItem_Click);
 			// 
 			// äóãàToolStripMenuItem
 			// 
 			this->äóãàToolStripMenuItem->Name = L"äóãàToolStripMenuItem";
-			this->äóãàToolStripMenuItem->Size = System::Drawing::Size(84, 22);
+			this->äóãàToolStripMenuItem->Size = System::Drawing::Size(155, 22);
 			this->äóãàToolStripMenuItem->Text = L"Äóãà";
 			this->äóãàToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::äóãàToolStripMenuItem_Click);
 			// 
@@ -458,6 +460,13 @@ namespace GraficRedactor {
 			this->timer2->Enabled = true;
 			this->timer2->Tick += gcnew System::EventHandler(this, &MyForm::timer2_Tick);
 			// 
+			// êîíåöToolStripMenuItem
+			// 
+			this->êîíåöToolStripMenuItem->Name = L"êîíåöToolStripMenuItem";
+			this->êîíåöToolStripMenuItem->Size = System::Drawing::Size(155, 22);
+			this->êîíåöToolStripMenuItem->Text = L"Êîíåö";
+			this->êîíåöToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::êîíåöToolStripMenuItem_Click);
+			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -677,8 +686,6 @@ namespace GraficRedactor {
 		this->radioButton2->Checked = true;
 		////////////////////////////////////////////////
 		this->textBox1->Text = System::Convert::ToString(this->trackBar1->Value);
-		Parametrs->FillEllipse(Pe->Brush, 195 - this->trackBar1->Value, 39 - this->trackBar1->Value,
-			this->trackBar1->Value * 2, this->trackBar1->Value * 2);
 		////////////////////////////////////////////////
 	}
 
@@ -752,6 +759,10 @@ namespace GraficRedactor {
 			Graph->FillEllipse(temp_pen->Brush, e->X - this->trackBar1->Value, e->Y - this->trackBar1->Value, this->trackBar1->Value * 2,
 				this->trackBar1->Value * 2);
 		}
+	}
+	private: System::Void êîíåöToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+		start = false;
+		finished_dyga1 = 0;
 	}
 };
 }
